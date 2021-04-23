@@ -66,7 +66,11 @@ export default function Episode({episode} : EpisodeProps){
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
         paths: [
-            { params: {slug: 'a-importancia-da-contribuicao-em-open-source'} }
+            { 
+                params: {
+                    slug: 'a-importancia-da-contribuicao-em-open-source' //esse episódio foi feito de forma statica. Quando o usuário acessar esse episódio, ele já estará disponível 
+                } 
+            }
         ],
 
         fallback: 'blocking'
