@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
@@ -7,12 +7,29 @@ import Image from 'next/image';
 import styles from  './styles.module.scss';
 
 export function Player(){
+    const audioRef = useRef<HTMLAudioElement>(null);
+
     const {
         episodeList, 
         currentEpisodeIndex, 
         isPlaying, 
-        togglePlay
+        togglePlay,
+        setPlayingState
     } = useContext(PlayerContext);
+
+    //essa função será chamada toda vez que o isPlaying for alterado
+    useEffect(() => {
+        if(!audioRef.current){
+            return;
+        }
+
+        if(isPlaying){
+            audioRef.current.play();
+        }else {
+            audioRef.current.pause();
+        }
+    }, [isPlaying])
+
     const episode = episodeList[currentEpisodeIndex];
 
 
@@ -62,7 +79,10 @@ export function Player(){
                 {episode && (
                     <audio
                         src={episode.url}
+                        ref={audioRef}
                         autoPlay
+                        onPlay={() => setPlayingState(true)}
+                        onPause={() => setPlayingState(false)}
                     />
                 )}
 
