@@ -43,7 +43,9 @@ export function Player(){
                     <div className={styles.slider}>
                         { episode ?
                         (
-                            <Slider/>
+                            <Slider
+                                trackStyle={{ backgroundColor: '#04d361'}}
+                            />
                         ): (
                             <div className={styles.emptySlider}/>
                         )}
@@ -58,7 +60,7 @@ export function Player(){
                     <button type="button">
                         <img src="/play-previous.svg" alt="Play previous"/>
                     </button>
-                    <button type="button" className={styles.playButtons}>
+                    <button type="button" className={styles.playButton}>
                         <img src="/play.svg" alt="Play"/>
                     </button>
                     <button type="button">
