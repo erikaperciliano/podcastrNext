@@ -45,7 +45,8 @@ export function Player(){
                         (
                             <Slider
                                 trackStyle={{ backgroundColor: '#04d361'}}
-                                railStyle={{background: '#9f75ff'}}
+                                railStyle={{backgroundColor: '#9f75ff'}}
+                                handleStyle={{borderColor:'#04d361', borderWidth: 4}}
                             />
                         ): (
                             <div className={styles.emptySlider}/>
