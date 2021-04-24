@@ -13,8 +13,11 @@ type PlayerContextData = {
     currentEpisodeIndex: number;
     isPlaying: boolean;
     play: (episode: Episode) => void;
+    playList: (list: Episode[], index:number) => void;  
     setPlayingState:(state: boolean) => void;
-    togglePlay: () => void;   
+    togglePlay: () => void;
+    playPrevious: () => void;  
+    playerNext: () => void;  
 };
 
 export const PlayerContext = createContext({} as PlayerContextData);
@@ -25,13 +28,19 @@ type PlayerContextProviderProps = {
 
 export function PlayerContextProvider({children}: PlayerContextProviderProps){
     const [episodeList, setEpisodeList] = useState([]);
-    const [currentEpisodeIndex, setEpisodeIndex] = useState(0);
+    const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
 
     function play(episode: Episode){
     setEpisodeList([episode]);
-    setEpisodeIndex(0);
+    setCurrentEpisodeIndex(0);
     setIsPlaying(true);
+    }
+
+    function playList(list: Episode[], index: number){
+        setEpisodeList(list);
+        setCurrentEpisodeIndex(index);
+        setIsPlaying(true);
     }
 
     function togglePlay(){
@@ -42,6 +51,19 @@ export function PlayerContextProvider({children}: PlayerContextProviderProps){
     setIsPlaying(state);
     }
 
+    function playerNext(){
+        const nextEpisodeIndex = currentEpisodeIndex + 1;
+        if(nextEpisodeIndex < episodeList.length){
+            setCurrentEpisodeIndex(nextEpisodeIndex);
+        }
+    }
+
+    function playPrevious(){
+        if(currentEpisodeIndex > 0){
+            setCurrentEpisodeIndex(currentEpisodeIndex - 1);
+        }   
+    }
+
     return (
         <PlayerContext.Provider 
             value={{
@@ -50,7 +72,10 @@ export function PlayerContextProvider({children}: PlayerContextProviderProps){
                 play, 
                 isPlaying, 
                 togglePlay, 
-                setPlayingState
+                setPlayingState,
+                playList,
+                playerNext,
+                playPrevious
             }}>
                 {children}
         </PlayerContext.Provider>
