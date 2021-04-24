@@ -11,7 +11,7 @@
 The following tools were used in the construction of the project:
 
 
-- [Next.js][nextejs]
+- [Next.js][nextjs]
 - [React][reactjs]
 - [TypeScript][typescript]
 
