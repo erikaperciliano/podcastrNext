@@ -98,7 +98,7 @@ export function Player(){
                 <div className={styles.buttons}>
                     <button 
                         type="button" 
-                        disabled={!episode}
+                        disabled={!episode || episodeList.length === 1}
                         onClick={toggleShuffle}
                         className={isShuffling ? styles.isActive: ''}
                     >
