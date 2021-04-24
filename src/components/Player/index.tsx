@@ -16,7 +16,9 @@ export function Player(){
         togglePlay,
         setPlayingState,
         playPrevious,
-        playerNext
+        playerNext,
+        hasPrevious,
+        hasNext
     } = useContext(PlayerContext);
 
     //essa função será chamada toda vez que o isPlaying for alterado
@@ -94,7 +96,7 @@ export function Player(){
                     </button>
                     <button 
                         type="button" 
-                        disabled={!episode}
+                        disabled={!episode || !hasPrevious}
                         onClick={playPrevious}
                     >
                         <img src="/play-previous.svg" alt="Play previous"/>
@@ -113,7 +115,7 @@ export function Player(){
                     </button>
                     <button 
                         type="button" 
-                        disabled={!episode}
+                        disabled={!episode || !hasNext}
                         onClick={playerNext}
                     >
                         <img src="/play-next.svg" alt="Play next"/>
