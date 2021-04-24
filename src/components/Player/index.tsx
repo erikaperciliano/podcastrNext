@@ -1,8 +1,8 @@
-import { useContext, useRef, useEffect } from 'react';
+import {useRef, useEffect } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import { PlayerContext } from '../../contexts/PlayerContext';
+import {usePlayer } from '../../contexts/PlayerContext';
 import Image from 'next/image';
 import styles from  './styles.module.scss';
 
@@ -19,7 +19,7 @@ export function Player(){
         playerNext,
         hasPrevious,
         hasNext
-    } = useContext(PlayerContext);
+    } = usePlayer();
 
     //essa função será chamada toda vez que o isPlaying for alterado
     useEffect(() => {
