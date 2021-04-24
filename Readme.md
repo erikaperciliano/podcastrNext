@@ -1,4 +1,4 @@
-# podcastrNext
+# podcastr
 
 ![Badge](https://img.shields.io/github/issues/erikaperciliano/podcastrNext)
 
